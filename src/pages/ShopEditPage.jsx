@@ -194,9 +194,11 @@ export default function ShopEditPage() {
       setIsModalOpen(true);
       setFileName("");
     } catch (error) {
-      console.error("Error:", error);
-      alert("서버 오류가 발생했습니다.");
-      navigate(`/link`);
+      if (error.message === "Bad Request") {
+        alert("비밀번호를 확인해 주세요");
+      } else {
+        alert("서버 오류가 발생했습니다.");
+      }
     }
   };
 

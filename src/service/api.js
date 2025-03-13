@@ -48,11 +48,11 @@ export const updateShop = async (id, currentPassword, updatedData) => {
     if (response.ok) {
       return data;
     } else {
-      throw new Error("비밀번호 검증 실패");
+      throw data;
     }
   } catch (error) {
     console.error("수정 요청 실패:", error);
-    throw new Error("수정 요청 중 오류 발생");
+    throw error;
   }
 };
 
