@@ -73,7 +73,7 @@ export default function ShopCreatePage() {
       return;
     }
 
-    const imageUrl = await uploadImage(file); // 이미지 업로드 함수 호출
+    const imageUrl = await uploadImage(file);
     setShopData((prev) => ({
       ...prev,
       products: prev.products.map((product, i) =>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/ShopForm.scss";
 import ShopInfoForm from "../components/ShopInfoForm";
 import ProductForm from "../components/ProductForm";
-import { getShop, updateShop, uploadImage } from "../service/api"; // 수정할 때 사용하는 API 함수
+import { getShop, updateShop, uploadImage } from "../service/api";
 import { useNavigate, useParams } from "react-router-dom";
 import FormModal from "../components/FormModal";
 import { validateForm } from "../utils/validate";
@@ -26,7 +26,7 @@ const initialState = {
 };
 
 export default function ShopEditPage() {
-  const { id } = useParams(); // URL 파라미터에서 id 추출
+  const { id } = useParams();
   const [shopData, setShopData] = useState(initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -38,11 +38,10 @@ export default function ShopEditPage() {
   useEffect(() => {
     const fetchShopData = async () => {
       try {
-        const response = await getShop(id); // 기존 데이터 가져오기
-        setShopData(response); // 가져온 데이터로 상태 업데이트
-        console.log(response, "데이터 확인용");
+        const response = await getShop(id);
+        setShopData(response);
       } catch (error) {
-        console.error("데이터를 불러오는 중 오류 발생:", error);
+        console.error("Error:", error);
       }
     };
 
@@ -93,12 +92,12 @@ export default function ShopEditPage() {
       return;
     }
 
-    const imageUrl = await uploadImage(file); // 이미지 업로드 함수 호출
+    const imageUrl = await uploadImage(file);
     setShopData((prev) => ({
       ...prev,
       products: prev.products.map((product, i) =>
         i === index ? { ...product, imageUrl } : product
-      ), // 해당 index 상품의 imageUrl만 업데이트
+      ),
     }));
     console.log("이미지 URL:", imageUrl);
     allFieldsFilled();

@@ -16,7 +16,6 @@ export default function PasswordModal({ onSubmit }) {
       return;
     }
 
-    // 비밀번호를 부모 컴포넌트로 전달
     onSubmit(password);
   };
 
