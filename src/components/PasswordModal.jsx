@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PasswordModal({ onSubmit }) {
+export default function PasswordModal({ onSubmit, onClose }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -22,6 +22,7 @@ export default function PasswordModal({ onSubmit }) {
   const handleClose = () => {
     setError("");
     setPassword("");
+    onClose(false);
   };
 
   return (

@@ -127,7 +127,12 @@ export default function ShopDetailPage() {
           <DetailItem detailData={detailData} />
         </ul>
       </div>
-      {showPasswordModal && <PasswordModal onSubmit={handlePasswordSubmit} />}
+      {showPasswordModal && (
+        <PasswordModal
+          onSubmit={handlePasswordSubmit}
+          onClose={setShowPasswordModal}
+        />
+      )}
       {loading && <div className="loading-spinner">비밀번호 확인 중...</div>}
     </div>
   );
