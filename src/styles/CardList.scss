@@ -1,0 +1,68 @@
+.card {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  &__item {
+    width: calc((100% - 24px) / 2);
+    background-color: #f8f8f8;
+    border-radius: 25px;
+    padding: 24px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  &__profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  &__profileImage {
+    padding-right: 15px;
+  }
+  &__name {
+    font-size: 18px;
+  }
+  &__id {
+    margin-top: 3px;
+    color: #888790;
+  }
+  &__feature {
+    font-size: 15px;
+    font-weight: bold;
+    color: #14151a;
+  }
+  &__products {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  &__image {
+    border-radius: 8px;
+    overflow: hidden;
+    width: 95px;
+    height: 95px;
+  }
+  &__favoriteButton {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  &__null {
+    padding-top: 100px;
+    text-align: center;
+    p {
+      font-size: 17px;
+    }
+  }
+}

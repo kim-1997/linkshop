@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Pretendard-Regular";
+}
+
+.blind {
+  text-indent: -9999px;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+}
+
+/* 버튼 */
+.button {
+  display: inline-block;
+  border-radius: 18px;
+  padding: 0 23px;
+  cursor: pointer;
+
+  &--primary {
+    background-color: #3e45ec;
+    border: none;
+  }
+
+  &__text {
+    line-height: 36px;
+    color: #fff;
+  }
+}
+
+/* 로딩 */
+.loading {
+  height: 500px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}

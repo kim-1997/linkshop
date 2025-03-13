@@ -1,0 +1,36 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__content {
+  background: white;
+  padding: 54px 90px 20px 90px;
+  border-radius: 8px;
+  text-align: center;
+  border-radius: 30px;
+  p {
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+}
+
+.modal__closeBtn {
+  margin-top: 10px;
+  padding: 15px 65px;
+  background-color: #3e45ec;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  span {
+    color: #fff;
+    font-size: 17px;
+  }
+}
