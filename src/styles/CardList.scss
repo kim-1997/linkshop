@@ -21,7 +21,13 @@
     margin-bottom: 8px;
   }
   &__profileImage {
-    padding-right: 15px;
+    margin-right: 15px;
+    width: 60px;
+    height: 60px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   &__name {
     font-size: 18px;
@@ -46,6 +52,11 @@
     overflow: hidden;
     width: 95px;
     height: 95px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   &__favoriteButton {
     position: absolute;
