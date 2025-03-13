@@ -194,7 +194,9 @@ export default function ShopEditPage() {
       setIsModalOpen(true);
       setFileName("");
     } catch (error) {
-      alert("비밀번호가 일치하지 않습니다.");
+      console.error("Error:", error);
+      alert("서버 오류가 발생했습니다.");
+      navigate(`/link`);
     }
   };
 
