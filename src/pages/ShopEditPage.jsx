@@ -31,6 +31,7 @@ export default function ShopEditPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [fileName, setFileName] = useState("");
   const navigate = useNavigate();
 
@@ -185,6 +186,7 @@ export default function ShopEditPage() {
     };
 
     try {
+      setIsLoading(true);
       const data = await updateShop(
         id,
         requestData.currentPassword,
@@ -193,6 +195,7 @@ export default function ShopEditPage() {
       setModalMessage("수정이 완료되었습니다.");
       setIsModalOpen(true);
       setFileName("");
+      setIsLoading(false);
     } catch (error) {
       if (error.message === "Bad Request") {
         alert("비밀번호를 확인해 주세요");
@@ -240,11 +243,17 @@ export default function ShopEditPage() {
           </button>
         </form>
       </div>
-      <FormModal
-        isOpen={isModalOpen}
-        message={modalMessage}
-        onClose={handleModalClose}
-      />
+      {isLoading ? (
+        <div className="loading-view">
+          <p>수정 중..</p>
+        </div>
+      ) : (
+        <FormModal
+          isOpen={isModalOpen}
+          message={modalMessage}
+          onClose={handleModalClose}
+        />
+      )}
     </div>
   );
 }

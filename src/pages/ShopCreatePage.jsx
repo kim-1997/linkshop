@@ -30,6 +30,7 @@ export default function ShopCreatePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [fileName, setFileName] = useState("");
   const navigate = useNavigate();
 
@@ -78,7 +79,7 @@ export default function ShopCreatePage() {
       ...prev,
       products: prev.products.map((product, i) =>
         i === index ? { ...product, imageUrl } : product
-      ), // 해당 index 상품의 imageUrl만 업데이트
+      ),
     }));
     console.log("이미지 URL:", imageUrl);
     allFieldsFilled();
@@ -149,11 +150,13 @@ export default function ShopCreatePage() {
     }
 
     try {
+      setIsLoading(true);
       const response = await createShop(shopData);
       if (response.ok) {
         setModalMessage("등록이 완료되었습니다.");
         setIsModalOpen(true);
         setFileName("");
+        setIsLoading(false);
       } else {
         alert("서버 오류가 발생했습니다.");
         navigate("/list");
@@ -203,11 +206,17 @@ export default function ShopCreatePage() {
           </button>
         </form>
       </div>
-      <FormModal
-        isOpen={isModalOpen}
-        message={modalMessage}
-        onClose={handleModalClose}
-      />
+      {isLoading ? (
+        <div className="loading-view">
+          <p>생성 중..</p>
+        </div>
+      ) : (
+        <FormModal
+          isOpen={isModalOpen}
+          message={modalMessage}
+          onClose={handleModalClose}
+        />
+      )}
     </div>
   );
 }

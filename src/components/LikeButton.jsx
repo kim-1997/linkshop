@@ -38,8 +38,6 @@ export default function LikeButton({ cardId, initialLikes, heartStyle }) {
     localStorage.setItem(`likesCount_${cardId}`, newLikesCount);
 
     try {
-      let response;
-
       if (newLiked) {
         await likeShop(cardId, newLiked, newLikesCount);
       } else {
