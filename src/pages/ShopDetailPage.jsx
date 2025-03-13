@@ -65,8 +65,11 @@ export default function ShopDetailPage() {
         alert("비밀번호가 일치하지 않습니다.");
       }
     } catch (error) {
-      console.error("비밀번호 검증 실패:", error);
-      alert("비밀번호 검증 중 오류 발생");
+      if (error.message === "Bad Request") {
+        alert("비밀번호를 확인해 주세요");
+      } else {
+        alert("서버 오류가 발생했습니다.");
+      }
     } finally {
       setLoading(false);
     }
