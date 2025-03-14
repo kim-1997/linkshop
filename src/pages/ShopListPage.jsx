@@ -29,11 +29,11 @@ export default function ShopListPage() {
   // 스크롤 이벤트 처리
   useEffect(() => {
     const handleScroll = () => {
-      const bottom =
-        document.documentElement.scrollHeight ===
+      const scrollPosition =
         document.documentElement.scrollTop + window.innerHeight;
+      const scrollHeight = document.documentElement.scrollHeight;
 
-      if (bottom && !isFetching && cursor) {
+      if (scrollPosition >= scrollHeight && !isFetching && cursor) {
         loadMore();
       }
     };
