@@ -1,8 +1,15 @@
 const BASE_URL = "https://linkshop-api.vercel.app/9908/linkshops";
 
-// 처음 렌더링 리스트 불러오기 / 상세 페이지
-export async function getShop(id = "") {
-  // const query = `orderBy=${orderBy}&page=${page}&pageSize=${pageSize}&keyword=${keyword}`;
+// 처음 렌더링 리스트 불러오기
+export async function getShop({ orderBy = "recent" }) {
+  const query = `orderBy=${orderBy}`;
+  const response = await fetch(`${BASE_URL}?${query}`);
+  const body = await response.json();
+  return body;
+}
+
+// 상세페이지
+export async function detailShop(id) {
   const response = await fetch(`${BASE_URL}/${id}`);
   const body = await response.json();
   return body;

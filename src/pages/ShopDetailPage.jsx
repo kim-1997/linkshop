@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/ShopDetail.scss";
-import { getShop, updateShop } from "../service/api.js";
+import { detailShop, updateShop } from "../service/api.js";
 import LikeButton from "../components/LikeButton.jsx";
 import PasswordModal from "../components/PasswordModal.jsx";
 
@@ -78,7 +78,7 @@ export default function ShopDetailPage() {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const data = await getShop(id);
+      const data = await detailShop(id);
       setDetailData(data);
       setLoading(false);
     };

@@ -10,17 +10,19 @@ export default function ShopListPage() {
   const [loading, setLoading] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
   const [keyword, setKeyword] = useState("");
+  const [pageSize, setPageSize] = useState(8);
+  const [orderBy, setOrderBy] = useState("recent");
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { list } = await getShop();
+      const { list } = await getShop({ orderBy });
       setData(list);
       setFilteredData(list);
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [orderBy]);
 
   const handleSearchChange = (e) => {
     setKeyword(e.target.value);
@@ -38,6 +40,8 @@ export default function ShopListPage() {
     }
   };
 
+  console.log(data);
+
   return (
     <div className="shop">
       <SearchBar
@@ -46,6 +50,11 @@ export default function ShopListPage() {
         handleSearchSubmit={handleSearchSubmit}
       />
       <div className="sort">상세필터 ▼</div>
+      <button onClick={() => setOrderBy("productsCount")}>
+        등록된 상품 순
+      </button>
+      <button onClick={() => setOrderBy("recent")}>최신순</button>
+      <button onClick={() => setOrderBy("likes")}>좋아요순</button>
 
       {!loading && filteredData.length === 0 ? (
         <div className="card__null">

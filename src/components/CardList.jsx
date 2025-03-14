@@ -3,7 +3,6 @@ import Card from "./Card";
 import "../styles/CardList.scss";
 
 export default function CardList({ data, loading }) {
-  console.log(data);
   return (
     <div className="card">
       {loading ? (

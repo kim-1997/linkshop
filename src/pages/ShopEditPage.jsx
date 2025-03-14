@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/ShopForm.scss";
 import ShopInfoForm from "../components/ShopInfoForm";
 import ProductForm from "../components/ProductForm";
-import { getShop, updateShop, uploadImage } from "../service/api";
+import { detailShop, updateShop, uploadImage } from "../service/api";
 import { useNavigate, useParams } from "react-router-dom";
 import FormModal from "../components/FormModal";
 import { validateForm } from "../utils/validate";
@@ -39,7 +39,7 @@ export default function ShopEditPage() {
   useEffect(() => {
     const fetchShopData = async () => {
       try {
-        const response = await getShop(id);
+        const response = await detailShop(id);
         setShopData(response);
       } catch (error) {
         console.error("Error:", error);
