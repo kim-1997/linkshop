@@ -133,7 +133,11 @@ export default function ShopDetailPage() {
           onClose={setShowPasswordModal}
         />
       )}
-      {loading && <div className="loading-spinner">비밀번호 확인 중...</div>}
+      {loading && (
+        <div className="loading-spinner">
+          <p>비밀번호 확인 중...</p>
+        </div>
+      )}
     </div>
   );
 }
