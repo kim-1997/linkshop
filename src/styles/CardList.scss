@@ -13,6 +13,12 @@
     padding: 24px;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #f3f1f1;
+    }
   }
   &__profile {
     position: relative;
@@ -83,4 +89,39 @@
   font-size: 18px;
   padding: 30px 0;
   font-weight: 700;
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    &__item {
+      padding: 20px;
+    }
+    &__name {
+      font-size: 16px;
+    }
+    &__id {
+      font-size: 14px;
+    }
+    &__profileImage {
+      width: 50px;
+      height: 50px;
+    }
+    &__image {
+      width: 80px;
+      height: 80px;
+    }
+    &__feature {
+      font-size: 14px;
+    }
+  }
+}
+@media screen and (max-width: 744px) {
+  .card {
+    &__list {
+      flex-direction: column;
+    }
+    &__item {
+      width: 100%;
+    }
+  }
 }

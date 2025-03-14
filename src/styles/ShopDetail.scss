@@ -73,6 +73,7 @@
     width: calc((100% - 24px) / 2);
     padding: 16px 20px;
     border-radius: 24px;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
   }
   &__productImage {
     border-radius: 8px;
@@ -109,5 +110,30 @@
   justify-content: center;
   p {
     color: #fff;
+  }
+}
+
+@media screen and (max-width: 744px) {
+  .detail {
+    &__kv {
+      padding-bottom: 20px;
+    }
+    &__profileImage {
+      width: 70px;
+      height: 70px;
+    }
+    &__shopName {
+      font-size: 24px;
+    }
+    &__list {
+      flex-direction: column;
+      gap: 15px;
+    }
+    &__item {
+      width: 100%;
+    }
+    &__productPrice {
+      font-size: 18px;
+    }
   }
 }
