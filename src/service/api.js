@@ -1,8 +1,11 @@
 const BASE_URL = "https://linkshop-api.vercel.app/9908/linkshops";
 
 // 처음 렌더링 리스트 불러오기
-export async function getShop({ orderBy = "recent" }) {
-  const query = `orderBy=${orderBy}`;
+export async function getShop({ orderBy = "recent", cursor = "" }) {
+  let query = `orderBy=${orderBy}`;
+  if (cursor) {
+    query += `&cursor=${cursor}`;
+  }
   const response = await fetch(`${BASE_URL}?${query}`);
   const body = await response.json();
   return body;

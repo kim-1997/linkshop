@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import CardList from "../components/CardList";
 import SearchBar from "../components/SearchBar";
 import "../styles/Sort.scss";
@@ -10,19 +10,48 @@ export default function ShopListPage() {
   const [loading, setLoading] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [pageSize, setPageSize] = useState(8);
   const [orderBy, setOrderBy] = useState("recent");
+  const [cursor, setCursor] = useState("");
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (options) => {
       setLoading(true);
-      const { list } = await getShop({ orderBy });
+      const { list, nextCursor } = await getShop(options);
       setData(list);
       setFilteredData(list);
+      setCursor(nextCursor);
       setLoading(false);
     };
-    fetchData();
+    fetchData({ orderBy });
   }, [orderBy]);
+
+  // 스크롤 이벤트 처리
+  useEffect(() => {
+    const handleScroll = () => {
+      const bottom =
+        document.documentElement.scrollHeight ===
+        document.documentElement.scrollTop + window.innerHeight;
+
+      if (bottom && !isFetching && cursor) {
+        loadMore();
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isFetching, cursor]);
+
+  // 더보기 기능
+  const loadMore = async () => {
+    setIsFetching(true);
+    const { list, nextCursor } = await getShop({ orderBy, cursor });
+    setFilteredData((prevData) => [...prevData, ...list]);
+    setCursor(nextCursor);
+    setIsFetching(false);
+  };
 
   const handleSearchChange = (e) => {
     setKeyword(e.target.value);
@@ -66,7 +95,14 @@ export default function ShopListPage() {
           </p>
         </div>
       ) : (
-        <CardList data={filteredData} loading={loading} />
+        <>
+          <CardList data={filteredData} loading={loading} />
+        </>
+      )}
+      {isFetching && (
+        <div className="loading-message">
+          <p>데이터 불러오는 중...</p>
+        </div>
       )}
     </div>
   );
