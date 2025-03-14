@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/PasswordModal.scss";
 
 export default function PasswordModal({ onSubmit, onClose }) {
   const [password, setPassword] = useState("");
@@ -38,9 +39,11 @@ export default function PasswordModal({ onSubmit, onClose }) {
             value={password}
             onChange={handlePasswordChange}
           />
-          <button type="submit">확인</button>
+          <div className="password-modal__button">
+            <button type="submit">확인</button>
+            <button onClick={handleClose}>취소</button>
+          </div>
         </form>
-        <button onClick={handleClose}>취소</button>
       </div>
     </div>
   );
