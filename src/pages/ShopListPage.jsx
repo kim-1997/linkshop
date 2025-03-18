@@ -26,12 +26,17 @@ export default function ShopListPage() {
     fetchData({ orderBy });
   }, [orderBy]);
 
+  window.addEventListener("scroll", function () {
+    console.log("실시간 스크롤 위치", window.scrollY);
+    console.log("현재 화면에 보이는 높이", window.innerHeight);
+    console.log("화면 전체 높이", document.documentElement.scrollHeight);
+  });
+
   // 스크롤 이벤트 처리
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition =
-        document.documentElement.scrollTop + window.innerHeight;
-      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const scrollHeight = document.documentElement.scrollHeight - 10;
 
       if (scrollPosition >= scrollHeight && !isFetching && cursor) {
         loadMore();

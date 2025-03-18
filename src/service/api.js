@@ -8,6 +8,8 @@ export async function getShop({ orderBy = "recent", cursor = "" }) {
   }
   const response = await fetch(`${BASE_URL}?${query}`);
   const body = await response.json();
+
+  console.log(response);
   return body;
 }
 
@@ -67,7 +69,7 @@ export const updateShop = async (id, currentPassword, updatedData) => {
 };
 
 // 좋아요
-export async function likeShop(cardId, liked, likesCount) {
+export async function likeShop(cardId, likesCount) {
   try {
     const response = await fetch(`${BASE_URL}/${cardId}/like`, {
       method: "POST",
@@ -75,10 +77,11 @@ export async function likeShop(cardId, liked, likesCount) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        liked,
         likesCount,
       }),
     });
+
+    console.log(response);
 
     if (!response.ok) {
       throw new Error("Error");
